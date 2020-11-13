@@ -1,0 +1,33 @@
+body,
+nav {
+  background-color: #221f1f;
+}
+
+.nav-item,
+h2,
+h4 {
+  color: #f5f5f1;
+}
+
+footer {
+  color: gray;
+}
+
+.text {
+  font-family: "Open Sans", sans-serif;
+}
+
+.page-footer #icon > i.fa {
+  font-size: 2rem;
+}
+
+#dropdownMenuButton {
+  background-color: black;
+  color: #f5f5f1;
+}
+
+#serviceButton {
+  background-color: #221f1f;
+  color: gray;
+  border: 1px solid;
+}
