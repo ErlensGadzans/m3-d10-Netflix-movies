@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
+  
     <nav class="navbar navbar-expand-md navbar-dark">
       <a class="navbar-brand" href="#">
         <img src="img/logo.png" style="height: 55px; width: 100px" alt="" />
@@ -54,7 +55,7 @@
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">TV Shows</a>
+            <a class="nav-link" href="./backoffice.html">Back office</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Movies</a>
@@ -89,6 +90,7 @@
         </a>
       </div>
     </nav>
+ 
 
     <div class="container-fluid">
       <div class="row ml-2">
@@ -103,9 +105,11 @@
         </div>
       </div>
     </div>
+
+
     <div class="container-fluid">
       <div class="row my-4 ml-2">
-        <h4>Trending now</h4>
+        <h4>COMEDY</h4>
       </div>
       <div
         id="carouselExampleSlidesOnly"
@@ -114,34 +118,20 @@
       >
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="row ml-1 mr-1 text-center row-cols-1 row-cols-md-6">
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix1.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix10.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix11.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix12.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix13.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix14.jpg" />
-              </div>
+            <div class="row ml-1 mr-1 text-center row-cols-1 row-cols-md-6" id="column1"> 
+           
             </div>
           </div>
         </div>
       </div>
     </div>
 
+
+
+
     <div class="container-fluid">
       <div class="row my-4 ml-2">
-        <h4>Watch it again</h4>
+        <h4>ACTION MOVIES</h4>
       </div>
       <div
         id="carouselExampleSlidesOnly"
@@ -150,25 +140,9 @@
       >
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="row ml-1 mr-1 text-center row-cols-1 row-cols-md-6">
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix1.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix10.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix11.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix12.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix13.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix14.jpg" />
-              </div>
+            <div class="row ml-1 mr-1 text-center row-cols-1 row-cols-md-6" id="column2">
+            
+              
             </div>
           </div>
         </div>
@@ -187,25 +161,7 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row ml-1 mr-1 text-center row-cols-1 row-cols-md-6">
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix1.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix10.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix11.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix12.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix13.png" />
-              </div>
-              <div class="col">
-                <img class="img-fluid" src="netfliximg/netflix14.jpg" />
-              </div>
-            </div>
+             
           </div>
         </div>
       </div>
@@ -273,9 +229,95 @@
                 </div>
             </div>
     </footer>
-    <!-- Optional JavaScript; choose one of the two! -->
+    
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script>
+
+const url = "https://striveschool-api.herokuapp.com/api/movies/";
+
+let categoryName = new Map();
+                categoryName.set("ACTION", "COMEDY");
+                categoryName.set("COMEDY", "ACTION");
+
+          //      console.log(categoryName.get('ACTION'));
+
+window.onload = async () => {
+      //  const url = "https://striveschool-api.herokuapp.com/api/movies/";
+     // let currentEvents = document.querySelector("#column1");
+
+     
+
+        try {
+          let headers = new Headers({
+            // we need also to declare the content type
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzc0ODRiY2RlMTAwMTc2MTZhOTMiLCJpYXQiOjE2MDUwOTMxOTMsImV4cCI6MTYwNjMwMjc5M30.Kn6ZT2xO1YZLg150dfse8kmZaXomgGZ1dCGPf5Tbtnk",
+          });
+          let response = await fetch(url + categoryName.get("ACTION"), { headers }); // this is getting the response from the API for a fetch request
+          let events = await response.json(); // this is transforming the response in a json, asyncronous operation!
+
+          if (events.length > 0) {
+            events.forEach((e) => {
+              let currentEvents = document.querySelector("#column1");
+              let listItem = document.createElement("card");
+              listItem.classList.add();
+              listItem.innerHTML = `
+                                      <div class="col my-3">
+                                     <div class="card">
+                                    <img src="${e.imageUrl}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">${e.name}</h5>
+                                      <h5 class="card-title">${e.category}</h5>
+                                      <p class="card-text"> <b>Description:</b> <br> <small>${e.description}</small></p>
+                                      <a href="detail.html?id=${e._id}" class="btn btn-primary">Read more</a>
+                                    
+                                    
+
+                                    </div>
+                              </div>
+                                  </div>`;
+              currentEvents.appendChild(listItem);
+            });
+          } else {
+            currentEvents.innerHTML = "<h1>No planned </h1>";
+          }
+
+          let response1 = await fetch(url + categoryName.get("COMEDY"), { headers }); // this is getting the response from the API for a fetch request
+          let events1 = await response1.json(); // this is transforming the response in a json, asyncronous operation!
+
+          if (events1.length > 0) {
+            events1.forEach((e) => {
+              let currentEvents1 = document.querySelector("#column2");
+              let listItem1 = document.createElement("card");
+              listItem1.classList.add();
+              listItem1.innerHTML = `
+                                      <div class="col my-3">
+                                     <div class="card">
+                                    <img src="${e.imageUrl}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title">${e.name}</h5>
+                                      <h5 class="card-title">${e.category}</h5>
+                                      <p class="card-text"> <b>Description:</b> <br> <small>${e.description}</small></p>
+                                      <a href="detail.html?id=${e._id}" class="btn btn-primary">Read more</a>
+                                    </div>
+                              </div>
+                                  </div>`;
+
+              currentEvents1.appendChild(listItem1);
+            });
+          } else {
+            currentEvents1.innerHTML = "<h1>No planned </h1>";
+          }
+
+
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    </script>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
